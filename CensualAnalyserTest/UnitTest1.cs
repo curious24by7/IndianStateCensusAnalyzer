@@ -20,7 +20,6 @@ namespace CensualAnalyserTest
         static string wrongIndianStateCodeFilePath = @"C:\Users\soham\source\repos\IndianStateCensusAnalyzer\CensualAnalyserTest\CsvFiles\WrongIndiaStateCode.csv";
         static string wrongIndianStateCensusFilePath = @"C:\Users\soham\source\repos\IndianStateCensusAnalyzer\CensualAnalyserTest\CsvFiles\WrongIndiaStateCensusData.csv";
         static string wrongIndianStateCodeFileType = @"C:\Users\soham\source\repos\IndianStateCensusAnalyzer\CensualAnalyserTest\CsvFiles\IndianStateCode.txt";
-        static string wrongHeaderIndianCensusFilePath = @"C:\Users\soham\source\repos\IndianStateCensusAnalyzer\CensualAnalyserTest\CsvFiles\WrongIndiaStateCensusData.csv";
         static string wrongIndianStateCensusFileType = @"C:\Users\soham\source\repos\IndianStateCensusAnalyzer\CensualAnalyserTest\CsvFiles\IndiaStateCensusData.txt";
 
         CensusAnalyser censusAnalyser;
@@ -60,6 +59,20 @@ namespace CensualAnalyserTest
         {
             var stateException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(wrongIndianStateCodeFilePath, Country.INDIA, indianStateCodeHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, stateException.eType);
+        }
+        //WrongFileType(Census)
+        [Test]
+        public void GivenWrongIndianStateCensusFileType_WhenReaded_ShouldReturnINVALID_FILE_TYPE()
+        {
+            var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(wrongIndianStateCensusFileType, Country.INDIA, indianStateCensusHeaders));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, censusException.eType);
+        }
+        //WrongFileType(Code)
+        [Test]
+        public void GivenWrongIndianStateCodeFileType_WhenReaded_ShouldReturnINVALID_FILE_TYPE()
+        {
+            var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(wrongIndianStateCodeFileType, Country.INDIA, indianStateCodeHeaders));
+            Assert.AreEqual(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE, censusException.eType);
         }
     }
 }
