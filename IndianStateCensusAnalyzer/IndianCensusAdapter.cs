@@ -20,7 +20,6 @@ namespace IndianStateCensusAnalyzer
                 if (!data.Contains(","))
                 {
                     throw new CensusAnalyserException("File contains wrong delimiter", CensusAnalyserException.ExceptionType.INCORRECT_DELIMITER);
-
                 }
                 string[] column = data.Split(",");
                 if (csvFilePath.Contains("IndiaStateCode.csv"))
