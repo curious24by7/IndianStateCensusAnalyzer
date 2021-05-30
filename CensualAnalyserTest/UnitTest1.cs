@@ -103,14 +103,14 @@ namespace CensualAnalyserTest
         //WrongHeader
         //TC 1.5
         [Test]
-        public void GivenWrongIndianCensusDataFilePath_WhenReaded_ShouldReturnException()
+        public void GivenWrongIndianCensusDataFilePath_WhenReaded_ShouldReturnINCORRECT_HEADER()
         {
             var censusException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(wrongHeaderIndianStateCensusFile, Country.INDIA, indianStateCensusHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, censusException.eType);
         }
         //TC 2.5
         [Test]
-        public void GivenWrongIndianStateCodeFilePath_WhenReaded_ShouldReturnException()
+        public void GivenWrongIndianStateCodeFilePath_WhenReaded_ShouldReturnINCORRECT_HEADER()
         {
             var stateCodeException = Assert.Throws<CensusAnalyserException>(() => censusAnalyser.LoadCensusData(wrongHeaderIndianStateCodeFile, Country.INDIA, indianStateCodeHeaders));
             Assert.AreEqual(CensusAnalyserException.ExceptionType.INCORRECT_HEADER, stateCodeException.eType);
